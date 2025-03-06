@@ -1,0 +1,1057 @@
+/* Estilo general */
+body {
+    margin: 0;
+    font-family: 'Rubik', sans-serif;
+    background-color: black;
+    color: white;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Línea tipo arcoíris */
+header::after {
+    content: '';
+    display: block;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 101;
+}
+
+/* Logo */
+#logo-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Empuja el logo hacia la derecha */
+    margin-right: 20px; /* Ajusta espacio desde el borde derecho */
+    transition: transform 0.3s ease; /* Suaviza la animación */
+}
+
+#logo {
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Menú hamburguesa */
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    margin-right: 10px; /* Espacio entre hamburguesa y elementos cercanos */
+}
+
+.menu-icon span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+.menu-icon:hover {
+    transform: scale(1.1);
+}
+
+.menu-icon.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+}
+
+.menu-icon.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-icon.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Menú lateral */
+#menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 250px;
+    height: calc(100% - 60px);
+    background-color: rgba(0, 0, 0, 0.9);
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    animation: slideIn 0.5s ease;
+}
+
+#menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#menu ul li {
+    padding: 15px 20px;
+}
+
+#menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: font-size 0.2s ease, color 0.2s ease;
+}
+
+#menu ul li a.active {
+    font-size: 22px;
+    color: #f39c12;
+}
+
+/* Contenedor de búsqueda */
+.search-container {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 101;
+}
+
+.search-container input {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid gray;
+    border-radius: 25px;
+    outline: none;
+    background-color: black; /* Fondo negro */
+    color: white;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.search-container input:focus {
+    border-color: #f39c12;
+    background-color: rgba(0, 0, 0, 0.8); /* Mantén el fondo oscuro */
+}
+
+/* Botón de buscar y perfil */
+.search-btn, .profile-btn {
+    background: transparent; /* Transparente inicialmente */
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin: 0 10px; /* Separación entre botones */
+}
+
+.search-btn:hover, .profile-btn:hover {
+    background-color: black; /* Fondo negro al pasar el mouse */
+    border-color: #f39c12;
+}
+
+/* Botón de cancelar */
+#cancel-btn {
+    display: none;
+    margin-top: 10px;
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#cancel-btn:hover {
+    background-color: #f39c12;
+    transform: scale(1.1);
+}
+
+/* Secciones principales */
+main {
+    padding: 100px 20px 20px; /* Espacio para evitar que las secciones traspasen el header */
+    text-align: center;
+}
+
+main section {
+    margin-bottom: 30px;
+}
+
+main section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Modo móvil */
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+
+    .search-container input {
+        width: 90%;
+    }
+
+    #menu {
+        width: 100%;
+        height: calc(100% - 60px);
+    }
+}
+.perfil-avatar {
+    text-align: center;
+    position: relative;
+}
+
+.avatar-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.avatar-img:hover {
+    transform: scale(1.05);
+}
+
+#avatar-form label {
+    cursor: pointer;
+    background-color: #f39c12;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#avatar-form label:hover {
+    background-color: #e67e22;
+}
+
+#avatar-upload {
+    display: none;
+}
+
+/* Contenedor principal del perfil */
+.perfil-container {
+    background: linear-gradient(145deg, rgba(255, 0, 150, 0.8), rgba(0, 0, 255, 0.8));
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Cabecera del perfil */
+.perfil-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.perfil-avatar {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.avatar-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+/* Botón de seleccionar archivo */
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: #e67e22;
+}
+
+/* Botón de actualizar imagen */
+button[type="submit"] {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #e67e22;
+}
+
+/* Botón de actualizar biografía a/
+.biografia-btn {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.biografia-btn:hover {
+    background-color: #e67e22;
+}
+
+/* Información del perfil */
+.perfil-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.info-box {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px;
+    width: 45%;
+    color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.info-box:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.info-box h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #f39c12;
+}
+
+.info-box p, .info-box a {
+    font-size: 16px;
+    margin: 5px 0;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-box a:hover {
+    color: #f39c12;
+}
+
+/* Animación */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer h5 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffc107;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 8px;
+}
+
+.footer ul li a {
+    color: #ffc107;
+    text-decoration: none;
+}
+
+.footer ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/* Estilos específicos para Ajustes */
+
+/* Contenedor principal de ajustes */
+#ajustes {
+    margin: 20px auto;
+    max-width: 800px;
+    background: linear-gradient(145deg, rgba(0, 0, 255, 0.7), rgba(255, 0, 150, 0.7));
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Encabezado */
+#ajustes .perfil-header {
+    margin-bottom: 20px;
+}
+
+#ajustes .perfil-header h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffc107;
+    text-align: center;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Formularios */
+#ajustes-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+#ajustes-form label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #f39c12;
+    margin-bottom: 5px;
+}
+
+#ajustes-form .form-control {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    outline: none;
+    background-color: black; /* Fondo negro */
+    color: white;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#ajustes-form .form-control:focus {
+    border-color: #f39c12;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+}
+
+/* Botones */
+#ajustes-form button {
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#ajustes-form button:hover {
+    background-color: #e67e22;
+    transform: scale(1.05);
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+    #ajustes {
+        padding: 15px;
+    }
+
+    #ajustes .perfil-header h2 {
+        font-size: 24px;
+    }
+
+    #ajustes-form .form-control {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    #ajustes-form button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+/* Estilos para Reglas */
+.rules-container {
+    margin: 20px auto;
+    max-width: 800px;
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.8), rgba(255, 165, 0, 0.8));
+    border-radius: 20px;
+    padding: 30px;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease-in-out;
+    text-align: justify;
+}
+
+.rules-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rules-header h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffc107;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.rules-list {
+    list-style-type: decimal;
+    padding-left: 20px;
+}
+
+.rules-list li {
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.rules-highlight {
+    color: #e67e22;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.rules-note {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 5px solid #ffc107;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.6;
+    color: white;
+}
+
+/* Responsivo para Reglas */
+@media (max-width: 768px) {
+    .rules-container {
+        padding: 15px;
+    }
+
+    .rules-header h2 {
+        font-size: 24px;
+    }
+
+    .rules-list li {
+        font-size: 16px;
+    }
+}
+/* Estilo para .mb-5 */
+.mb-5 {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(25, 25, 25, 0.9));
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.2);
+    padding: 20px;
+    margin: 20px auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animación de hover */
+.mb-5:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 60px rgba(0, 255, 255, 0.5);
+}
+
+/* Efecto de fondo animado */
+.mb-5::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.3), transparent 70%);
+    filter: blur(100px);
+    z-index: 0;
+    animation: backgroundFlow 6s infinite linear;
+}
+
+/* Movimiento del fondo */
+@keyframes backgroundFlow {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(50px, 50px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* Ajustar contenido dentro de .mb-5 */
+.mb-5 h2 {
+    font-size: 1.8rem;
+    color: #00ffff;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+.mb-5 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.mb-5 ul li {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin: 5px 0;
+    color: white;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover en los elementos de la lista */
+.mb-5 ul li:hover {
+    background-color: rgba(0, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+/* Estilo para el contenedor de la sección */
+.container.mt-5 {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(25, 25, 25, 0.95));
+    border: 2px solid #00ffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1.2s ease-out;
+}
+
+/* Título centrado con estilo futurista */
+.container.mt-5 h1 {
+    color: #00ffff;
+    font-size: 2.5rem;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Animación de aparición suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilo para el texto descriptivo */
+.container.mt-5 p {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Estilo para la lista de reglas */
+.container.mt-5 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo de los elementos de la lista */
+.container.mt-5 ul li {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #00ffff;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover para los elementos de la lista */
+.container.mt-5 ul li:hover {
+    background: rgba(0, 255, 255, 0.1);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+/* Estilo para los íconos de color según la gravedad */
+.container.mt-5 ul li span {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Personalización de colores por gravedad */
+.container.mt-5 ul li span:nth-child(1) {
+    color: #4caf50; /* Verde */
+}
+
+.container.mt-5 ul li span:nth-child(2) {
+    color: #ffeb3b; /* Amarillo */
+}
+
+.container.mt-5 ul li span:nth-child(3) {
+    color: #f44336; /* Rojo */
+}
+
+/* Estilo de contenedor de géneros */
+.genres-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alineación a la izquierda */
+    padding: 20px;
+}
+
+#genres-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.genre-btn {
+    background-color: #2f2f2f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: left;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.genre-btn:hover {
+    background-color: #444;
+}
+
+/* Estilo para el cuadro de Estado */
+.genre-btn[data-genre="romance"]:after, 
+.genre-btn[data-genre="accion"]:after,
+.genre-btn[data-genre="isekai"]:after,
+.genre-btn[data-genre="drama"]:after,
+.genre-btn[data-genre="ecchi"]:after,
+.genre-btn[data-genre="general"]:after {
+    content: " ESTADO:";
+    font-weight: bold;
+    color: #ffd700;
+    margin-left: 10px;
+}
+
+/* Cuadro para seleccionar estado */
+.genre-status {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.genre-status select {
+    padding: 5px;
+    font-size: 16px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.genre-status button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.genre-status button:hover {
+    background-color: #218838;
+}
+/* mangas como diria el nav la bibloteca */
+/* Estilo de contenedor de géneros */
+.genres-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alineación a la izquierda */
+    padding: 20px;
+}
+
+#genres-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.genre-btn {
+    background-color: #2f2f2f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: left;
+    width: 200px;
+}
+
+.genre-btn:hover {
+    background-color: #444;
+}
+
+/* Estilo para el cuadro de Estado */
+.genre-status {
+    margin-top: 10px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.genre-status select {
+    padding: 5px;
+    font-size: 16px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.filter-btn {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.filter-btn:hover {
+    background-color: #218838;
+}
+
+/* Estilo para el contenedor de resultados */
+.results-container {
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.manga-card {
+    background-color: #f1f1f1;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.manga-card:hover {
+    background-color: #ddd;
+}
+
+
+
+
+
+
+
+/* Estilos para el chat a pantalla completa */
+.chat-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: #007bff;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-body {
+    flex-grow: 1;
+    background-color: #121212;
+    padding: 20px;
+    overflow-y: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    color: #bbb;
+}
+
+.message .user {
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 10px;
+}
+
+.message .text {
+    background-color: #333;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 75%;
+    font-size: 16px;
+    word-wrap: break-word;
+    color: #fff;
+}
+
+.chat-footer {
+    display: flex;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    align-items: center;
+}
+
+.chat-footer .message-input {
+    flex-grow: 1;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    font-size: 16px;
+    outline: none;
+    background-color: #222;
+    color: white;
+}
+
+.chat-footer .send-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.chat-footer .send-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para el botón de regresar */
+.back-btn-container {
+    position: absolute;
+    bottom: 80px; /* Justo encima de la barra de entrada */
+    width: 100%;
+    text-align: center;
+}
+
+.back-btn {
+    background-color: #ff5e5e;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #ff2e2e;
+}
